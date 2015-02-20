@@ -8,6 +8,9 @@
 
  Use the output to compare to a clean install of Windows
 
+ Also try the output of:
+  Dir cert:\ -recurse
+
 #>
 
 $dir = "C:\Export\"
