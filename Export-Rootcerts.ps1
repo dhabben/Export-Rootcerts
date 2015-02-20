@@ -3,8 +3,8 @@
  https://gist.github.com/zakird/a8582ced2f50cfe1c702
 
  Example:
-  Export-Root-Certs.ps1
-  Export-Root-Certs.ps1 > Current-Certs.txt
+  Export-Rootcerts.ps1
+  Export-Rootcerts.ps1 > Current-Certs.txt
 
  Use the output to compare to a clean install of Windows
 
