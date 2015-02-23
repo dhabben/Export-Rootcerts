@@ -461,18 +461,23 @@ $knownHashes =
 "B94294BF91EA8FB64BE61097C7FB001359B676CB",
 "1632478D89F9213A92008563F5A4A7D312408AD6"
 
-$dir = "C:\Export\"
 $type = [System.Security.Cryptography.X509Certificates.X509ContentType]::Cert
 
-
 Get-ChildItem -Path cert:\LocalMachine\AuthRoot | ForEach-Object {
-    Write-Output "======================================"
-    Write-Output $_.GetCertHashString()
-    Write-Output $_.FriendlyName
-    Write-Output $_.GetIssuerName()
-    Write-Output $_.GetEffectiveDateString()
-    Write-Output $_.GetExpirationDateString()
+    $hash = $_.GetCertHashString()
     
-    #$cerHash = $_.GetCertHashString()
-    #[System.IO.File]::WriteAllBytes("$dir$cerHash.der", $_.export($type))
+    if ($knownHashes -contains $hash) { 
+        $color = "Green" 
+    } else { 
+        $color = "Red"
+    } 
+
+    Write-Host "========================================" -ForegroundColor $color
+    Write-Host $hash                                      -ForegroundColor $color
+    Write-Host $_.FriendlyName                            -ForegroundColor $color
+    Write-Host $_.GetIssuerName()                         -ForegroundColor $color
+    Write-Host $_.GetEffectiveDateString()                -ForegroundColor $color
+    Write-Host $_.GetExpirationDateString()               -ForegroundColor $color
+    
+    #[System.IO.File]::WriteAllBytes("$hash.der", $_.export($type))
 }
